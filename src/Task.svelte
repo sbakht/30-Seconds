@@ -25,11 +25,18 @@
 </style>
 
 <script>
+  import { createEventDispatcher } from 'svelte';
   export let tasks = [];
+
+  const dispatch = createEventDispatcher();
+
+  function openTask(task) {
+    dispatch('open-task', {task})
+  }
 </script>
 
 <div class="goals">
   {#each tasks as task}
-    <div class="goal" class:complete="{task.completed}">{task.title}</div>
+    <div class="goal" class:complete="{task.completed}" on:click={() => openTask(task)}>{task.title}</div>
   {/each}
 </div>

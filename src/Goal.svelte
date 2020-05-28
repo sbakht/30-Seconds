@@ -14,11 +14,15 @@
     margin-top: 225px;
   }
 
+  .complete {
+    color: rgb(0, 0, 0, .2);
+  }
+
 </style>
 
 <script>
-    export let text;
+    export let task;
     export let hasUnfinishedTasks;
 </script>
 
-<div class="todo" class:pushdown={!hasUnfinishedTasks}>{text}</div>
+<div class="todo" class:complete={task.completed} class:pushdown={!hasUnfinishedTasks}>{task.title}</div>
