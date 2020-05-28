@@ -3,7 +3,9 @@
     display:flex;
     justify-content: space-between;
     flex-shrink:0;
-    padding: 0 8px 5  px 8px;
+    padding: 0 8px 5px 8px;
+    grid-column: 1/-1;
+    align-items: flex-end;
   }
 
   .icons svg {

@@ -5,6 +5,7 @@
     font-size: 36px;
     letter-spacing: 0.5em;
     color: rgba(0, 0, 0, 0.7);
+    grid-column: 2;
   }
 </style>
 

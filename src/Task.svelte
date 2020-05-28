@@ -1,15 +1,12 @@
 <style>
   .goals {
-    align-self: center;
     display:grid;
-    flex: 1 0 auto;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     padding: 100px 0;
-    width: 960px;
+    grid-column: 2;
   }
 
   .goal {
-    width: 200px;
     padding: 16px 16px;
     color: rgb(0, 0, 0, .8);
     cursor: pointer;

@@ -1,17 +1,17 @@
 <style>
   .todo {
     text-align: center;
-    padding-top: 24px;
     font-size: 48px;
     letter-spacing: 0.2em;
     color: rgba(0, 0, 0, 0.7);
-    margin-top: 50px;
+    margin-top: 75px;
     padding-left: 8px;
     padding-right: 8px;
+    grid-column: 2;
   }
 
   .pushdown {
-    margin-top: 200px;
+    margin-top: 225px;
   }
 
 </style>
