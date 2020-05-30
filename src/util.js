@@ -26,4 +26,8 @@ function getActiveGoalFromUrlHash(root) {
   }
 }
 
-export default { findDeep, getActiveGoalFromUrlHash }
+function setUrlHash(id) {
+  window.history.pushState('', '', '#' + id)
+}
+
+export default { findDeep, getActiveGoalFromUrlHash, setUrlHash }

@@ -15,6 +15,10 @@
   function onClear() {
     dispatch("uncompletion");
   }
+
+  function onDelete() {
+    dispatch("deletion", { id: goal.goal.id });
+  }
 </script>
 
 <style>
@@ -104,6 +108,7 @@
 
   {#if remove && !goal.goal.isRoot}
     <svg
+      on:click={onDelete}
       class="delete"
       width="81"
       height="73"

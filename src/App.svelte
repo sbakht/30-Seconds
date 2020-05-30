@@ -3,7 +3,6 @@
   import Title from "./Goal.svelte";
   import Icons from "./Icons.svelte";
   import Task from "./Task.svelte";
-  import hash from "./hasher.js";
   import Goal from "./goal/Goal.js";
   import ActiveGoal from "./goal/ActiveGoal.js";
   import Util from "./util.js";
@@ -39,12 +38,9 @@
   }
 
   function openTask(e) {
-    const subgoal = e.detail.subgoal;
-    activeGoal.goInto(subgoal.id);
+    activeGoal.goInto(e.detail.subgoal.id);
     activeGoal = activeGoal;
-    // window.history.pushState(history.length, "", "#" + hash(activeTask.title));
-    // history.push(activeTask);
-    // index++;
+    Util.setUrlHash(activeGoal.getId());
   }
 
   function onCompletion() {
@@ -57,21 +53,19 @@
     activeGoal = activeGoal;
   }
 
-  // window.addEventListener('popstate', (event) => {
-  // debugger;
-  // 	if(history.length) {
-  // 		if(event.state > index) {
-  // 			index++;
-  // 		}else{
-  // 			index--;
-  // 		}
-  // 		activeTask = history[index];
-  // 	}
-  // });
+  function onDeletion(e) {
+    goBack();
+    activeGoal.removeSubgoal(e.detail.id);
+  }
+
+  window.addEventListener("popstate", () => {
+    activeGoal = new ActiveGoal(Util.getActiveGoalFromUrlHash(root));
+  });
 
   function goBack() {
     activeGoal.goUp();
     activeGoal = activeGoal;
+    Util.setUrlHash(activeGoal.getId());
   }
 </script>
 
@@ -100,5 +94,6 @@
     complete={!hasUnfinishedTasks && !activeGoal.goal.completed}
     clear={activeGoal.goal.completed && parentIsNotCompleted}
     on:completion={onCompletion}
+    on:deletion={onDeletion}
     on:uncompletion={onUncompletion} />
 </div>

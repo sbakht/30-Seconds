@@ -3,6 +3,10 @@ class ActiveGoal {
     this.goal = goal
   }
 
+  getId() {
+    return this.goal.id
+  }
+
   goUp() {
     if (this.goal.parent && !this.goal.isRoot) {
       this.goal = this.goal.parent
@@ -39,6 +43,10 @@ class ActiveGoal {
       return this.goal.parent.completed
     }
     return false
+  }
+
+  removeSubgoal(id) {
+    this.goal.removeSubgoal(id)
   }
 }
 
