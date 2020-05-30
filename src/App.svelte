@@ -7,29 +7,8 @@
   import ActiveGoal from "./goal/ActiveGoal.js";
   import Util from "./util.js";
 
-  const root = new Goal({ id: 1, title: "Home", isRoot: true });
-  const g1 = new Goal({ id: 2, title: "Buy Kiddo protecc" });
-  const g2 = new Goal({
-    id: 3,
-    title: "Open Universe website",
-    completed: true
-  });
-  const g4 = new Goal({ id: 5, title: "Dance with a chicken" });
-  const g3 = new Goal({ id: 4, title: "Get credit card", subgoals: [g4] });
-  const g5 = new Goal({
-    id: 5,
-    title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    subgoals: []
-  });
-  root.addSubgoal(g1);
-  g1.addSubgoal(g2);
-  g1.addSubgoal(g3);
-  g1.addSubgoal(g5);
-
-  // let index = 0;
+  let { goals: root, maxID } = Util.fetch();
   let activeGoal = new ActiveGoal(Util.getActiveGoalFromUrlHash(root));
-  let maxID = 5;
 
   let hasUnfinishedTasks;
   let parentIsNotCompleted = true;
@@ -55,21 +34,25 @@
   function onSave() {
     activeGoal.goal.isPending = false;
     goBack();
+    Util.save(root, maxID);
   }
 
   function onCompletion() {
     activeGoal.setCompleted();
     goBack();
+    Util.save(root, maxID);
   }
 
   function onUncompletion() {
     activeGoal.setUnfinished();
     activeGoal = activeGoal;
+    Util.save(root, maxID);
   }
 
   function onDeletion(e) {
     goBack();
     activeGoal.removeSubgoal(e.detail.id);
+    Util.save(root, maxID);
   }
 
   window.addEventListener("popstate", () => {

@@ -53,6 +53,7 @@
   button {
     border-radius: 30px;
     cursor: pointer;
+    font-size: 30px;
   }
 
   .save {
