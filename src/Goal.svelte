@@ -1,8 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
   export let goal;
-  export let hasUnfinishedTasks;
-  let title = "";
   let myInput;
 
   $: {
