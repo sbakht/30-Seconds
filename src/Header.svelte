@@ -1,13 +1,3 @@
-<script>
-  import { createEventDispatcher } from "svelte";
-
-  const dispatch = createEventDispatcher();
-
-  function goBack() {
-    dispatch("go-back");
-  }
-</script>
-
 <style>
   .header__title {
     text-align: center;
@@ -19,7 +9,4 @@
   }
 </style>
 
-<div class="header__title">
-  30 SECONDS
-  <div on:click={goBack}>Go back</div>
-</div>
+<div class="header__title">30 SECONDS</div>

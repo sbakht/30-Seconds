@@ -6,6 +6,7 @@
   import Goal from "./goal/Goal.js";
   import ActiveGoal from "./goal/ActiveGoal.js";
   import Util from "./util.js";
+  import BackButton from "./BackButton.svelte";
 
   let { goals: root, maxID } = Util.fetch();
   let activeGoal = new ActiveGoal(Util.getActiveGoalFromUrlHash(root));
@@ -83,9 +84,9 @@
 </style>
 
 <div id="container">
-  <Header on:go-back={goBack} />
+  <BackButton isRoot={activeGoal.goal.isRoot} on:go-back={goBack} />
+  <Header />
   <Title
-    {hasUnfinishedTasks}
     goal={activeGoal.goal}
     on:save-goal={onSave}
     on:deletion={onDeletion} />

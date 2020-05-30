@@ -81,7 +81,7 @@
   <div
     class="todo"
     class:complete={goal.completed}
-    class:pushdown={!hasUnfinishedTasks}>
+    class:pushdown={goal.subgoals.length === 0}>
     {goal.title}
   </div>
 {/if}
