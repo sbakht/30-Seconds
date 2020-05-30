@@ -3,6 +3,11 @@
   export let goal;
   export let hasUnfinishedTasks;
   let title = "";
+  let myInput;
+
+  $: {
+    if (myInput) myInput.focus();
+  }
 
   const dispatch = createEventDispatcher();
 
@@ -12,6 +17,10 @@
 
   function onDelete() {
     dispatch("deletion", { id: goal.id });
+  }
+
+  function onKey(e) {
+    if (e.key === "Enter") onSave();
   }
 </script>
 
@@ -26,6 +35,7 @@
     padding-left: 8px;
     padding-right: 8px;
     grid-column: 2;
+    overflow-wrap: anywhere;
   }
 
   .pushdown {
@@ -39,17 +49,32 @@
   input {
     width: 100%;
   }
+
+  button {
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .save {
+    background: rgb(222, 222, 222);
+  }
+
+  .cancel {
+    background: #f9f9f9;
+  }
 </style>
 
 {#if goal.isPending}
   <div class="todo pushdown">
     <input
+      bind:this={myInput}
+      on:keypress={onKey}
       class="todo"
       type="text"
       placeholder="Type goal here..."
       bind:value={goal.title} />
-    <button on:click={onSave}>Save Goal</button>
-    <button on:click={onDelete}>Cancel</button>
+    <button class="save" on:click={onSave}>Save Goal</button>
+    <button class="cancel" on:click={onDelete}>Cancel</button>
   </div>
 {:else}
   <div

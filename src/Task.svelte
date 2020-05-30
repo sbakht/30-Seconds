@@ -21,6 +21,7 @@
     padding: 16px 16px;
     color: rgb(0, 0, 0, 0.8);
     cursor: pointer;
+    overflow-wrap: anywhere;
   }
 
   .complete {

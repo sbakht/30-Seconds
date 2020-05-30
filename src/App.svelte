@@ -54,7 +54,7 @@
 
   function onSave() {
     activeGoal.goal.isPending = false;
-    activeGoal = activeGoal;
+    goBack();
   }
 
   function onCompletion() {
