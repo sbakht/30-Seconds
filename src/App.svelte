@@ -29,6 +29,7 @@
 
   // let index = 0;
   let activeGoal = new ActiveGoal(Util.getActiveGoalFromUrlHash(root));
+  let maxID = 5;
 
   let hasUnfinishedTasks;
   let parentIsNotCompleted = true;
@@ -41,6 +42,19 @@
     activeGoal.goInto(e.detail.subgoal.id);
     activeGoal = activeGoal;
     Util.setUrlHash(activeGoal.getId());
+  }
+
+  function onAddition() {
+    const goal = new Goal({ id: ++maxID, title: "", isPending: true });
+    activeGoal.addSubgoal(goal);
+    activeGoal.goInto(goal.id);
+    activeGoal = activeGoal;
+    Util.setUrlHash(activeGoal.getId());
+  }
+
+  function onSave() {
+    activeGoal.goal.isPending = false;
+    activeGoal = activeGoal;
   }
 
   function onCompletion() {
@@ -87,12 +101,18 @@
 
 <div id="container">
   <Header on:go-back={goBack} />
-  <Title {hasUnfinishedTasks} goal={activeGoal.goal} />
+  <Title
+    {hasUnfinishedTasks}
+    goal={activeGoal.goal}
+    on:save-goal={onSave}
+    on:deletion={onDeletion} />
   <Task goal={activeGoal} on:open-goal={openTask} />
   <Icons
     goal={activeGoal}
-    complete={!hasUnfinishedTasks && !activeGoal.goal.completed}
+    add={!activeGoal.goal.isPending}
+    complete={!hasUnfinishedTasks && !activeGoal.goal.completed && !activeGoal.goal.isPending}
     clear={activeGoal.goal.completed && parentIsNotCompleted}
+    on:adding={onAddition}
     on:completion={onCompletion}
     on:deletion={onDeletion}
     on:uncompletion={onUncompletion} />

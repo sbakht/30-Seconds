@@ -1,9 +1,18 @@
 class Goal {
-  constructor({ id, title, subgoals = [], parent, isRoot, completed = false }) {
+  constructor({
+    id,
+    title,
+    subgoals = [],
+    parent,
+    isRoot,
+    completed = false,
+    isPending = false,
+  }) {
     this.id = id
     this.title = title
     this.subgoals = subgoals
     this.completed = !!completed
+    this.isPending = isPending
     if (!isRoot) {
       this.parent = parent
     } else {
@@ -49,6 +58,10 @@ class Goal {
       }
       return 0
     })
+  }
+
+  deletePending() {
+    this.subgoals = this.subgoals.filter((g) => !g.isPending)
   }
 }
 

@@ -10,6 +10,7 @@ class ActiveGoal {
   goUp() {
     if (this.goal.parent && !this.goal.isRoot) {
       this.goal = this.goal.parent
+      this.goal.deletePending()
     }
   }
 
@@ -47,6 +48,10 @@ class ActiveGoal {
 
   removeSubgoal(id) {
     this.goal.removeSubgoal(id)
+  }
+
+  addSubgoal(goal) {
+    this.goal.addSubgoal(goal)
   }
 }
 

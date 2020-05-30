@@ -8,6 +8,12 @@
 
   const dispatch = createEventDispatcher();
 
+  function onSave() {}
+
+  function onAdd() {
+    dispatch("adding");
+  }
+
   function onComplete() {
     dispatch("completion");
   }
@@ -34,12 +40,17 @@
   .icons svg {
     cursor: pointer;
   }
+
+  .pending {
+    justify-content: flex-end;
+  }
 </style>
 
-<div class="icons">
+<div class="icons" class:pending={goal.goal.isPending}>
 
   {#if add}
     <svg
+      on:click={onAdd}
       class="add"
       width="81"
       height="73"
