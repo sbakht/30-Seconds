@@ -1,3 +1,8 @@
+<script>
+  export let goal;
+  export let hasUnfinishedTasks;
+</script>
+
 <style>
   .todo {
     text-align: center;
@@ -15,14 +20,13 @@
   }
 
   .complete {
-    color: rgb(0, 0, 0, .2);
+    color: rgb(0, 0, 0, 0.2);
   }
-
 </style>
 
-<script>
-    export let task;
-    export let hasUnfinishedTasks;
-</script>
-
-<div class="todo" class:complete={task.completed} class:pushdown={!hasUnfinishedTasks}>{task.title}</div>
+<div
+  class="todo"
+  class:complete={goal.completed}
+  class:pushdown={!hasUnfinishedTasks}>
+  {goal.title}
+</div>
