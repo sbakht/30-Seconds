@@ -33,6 +33,13 @@ class ActiveGoal {
   hasPendingSubgoals() {
     return !!this.goal.subgoals.find((g) => !g.completed)
   }
+
+  isParentCompleted() {
+    if (this.goal.parent && !this.goal.isRoot) {
+      return this.goal.parent.completed
+    }
+    return false
+  }
 }
 
 export default ActiveGoal

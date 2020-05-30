@@ -6,6 +6,7 @@
   import hash from "./hasher.js";
   import Goal from "./goal/Goal.js";
   import ActiveGoal from "./goal/ActiveGoal.js";
+  import Util from "./util.js";
 
   const root = new Goal({ id: 1, title: "Home", isRoot: true });
   const g1 = new Goal({ id: 2, title: "Buy Kiddo protecc" });
@@ -28,17 +29,13 @@
   g1.addSubgoal(g5);
 
   // let index = 0;
-  let activeGoal = new ActiveGoal(root);
+  let activeGoal = new ActiveGoal(Util.getActiveGoalFromUrlHash(root));
 
   let hasUnfinishedTasks;
   let parentIsNotCompleted = true;
   $: {
     hasUnfinishedTasks = activeGoal.hasPendingSubgoals();
-    // if (history.length) {
-    //   parentIsNotCompleted = !history[history.length - 1].completed;
-    // } else {
-    //   parentIsNotCompleted = true;
-    // }
+    parentIsNotCompleted = !activeGoal.isParentCompleted();
   }
 
   function openTask(e) {
@@ -51,18 +48,13 @@
   }
 
   function onCompletion() {
-    activeTask.completed = true;
-    //if(history.length) {
-    //activeTask = history.pop();
-    //window.history.back()
-    //}
+    activeGoal.setCompleted();
+    goBack();
   }
 
   function onUncompletion() {
-    activeTask.completed = false;
-    //if((!activeTask.tasks || activeTasks.tasks.length === 0) && history.length) {
-    //activeTask = history.pop();
-    //}
+    activeGoal.setUnfinished();
+    activeGoal = activeGoal;
   }
 
   // window.addEventListener('popstate', (event) => {

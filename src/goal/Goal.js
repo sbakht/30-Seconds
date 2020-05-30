@@ -9,6 +9,8 @@ class Goal {
     } else {
       this.isRoot = true
     }
+
+    this.subgoals.forEach((g) => (g.parent = this))
   }
 
   setParent(parent) {
@@ -19,6 +21,10 @@ class Goal {
     goal.setParent(this)
     this.subgoals.push(goal)
     this.sortSubgoals()
+  }
+
+  removeSubgoal(id) {
+    this.subgoals = this.subgoals.filter((g) => g.id !== id)
   }
 
   findSubgoal(id) {

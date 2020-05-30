@@ -12,4 +12,18 @@ function findDeep(goal, id) {
   return false
 }
 
-export default findDeep
+function getActiveGoalFromUrlHash(root) {
+  const hashID = window.location.hash.substring(1)
+  if (hashID.length) {
+    const goal = findDeep(root, parseInt(hashID, 10))
+    if (goal) {
+      return goal
+    } else {
+      return root
+    }
+  } else {
+    return root
+  }
+}
+
+export default { findDeep, getActiveGoalFromUrlHash }
