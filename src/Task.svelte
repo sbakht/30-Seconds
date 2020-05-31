@@ -13,8 +13,9 @@
   .goals {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding: 100px 0;
     grid-column: 2;
+    align-items: center;
+    grid-gap: 40px;
   }
 
   .goal {
@@ -22,6 +23,13 @@
     color: rgb(0, 0, 0, 0.8);
     cursor: pointer;
     overflow-wrap: anywhere;
+    border: 1px solid black;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  .goal:hover {
+    background-color: #efefef;
   }
 
   .complete {

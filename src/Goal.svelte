@@ -26,10 +26,9 @@
   .todo {
     text-align: center;
     border: none;
-    font-size: 48px;
+    font-size: 60px;
     letter-spacing: 0.2em;
     color: rgba(0, 0, 0, 0.7);
-    margin-top: 75px;
     padding-left: 8px;
     padding-right: 8px;
     grid-column: 2;

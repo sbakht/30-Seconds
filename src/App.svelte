@@ -74,11 +74,12 @@
     flex-direction: column;
     height: 100%;
     grid-template-columns: 100px 1fr 100px;
+    grid-template-rows: 100px 100px;
   }
 
   @media (max-width: 599px) {
     #container {
-      grid-template-columns: 16px 1fr 16px;
+      grid-template-columns: 8px 1fr 8px;
     }
   }
 </style>
