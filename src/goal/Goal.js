@@ -64,6 +64,10 @@ class Goal {
     this.subgoals = this.subgoals.filter((g) => !g.isPending)
   }
 
+  getUnfinishedCount() {
+    return this.subgoals.filter((g) => !g.completed).length
+  }
+
   getSubgoalCount() {
     if (!this.subgoals.length) {
       return 0
@@ -71,7 +75,7 @@ class Goal {
 
     return this.subgoals.reduce(
       (accum, g) => accum + g.getSubgoalCount(),
-      this.subgoals.length,
+      this.getUnfinishedCount(),
     )
   }
 }
