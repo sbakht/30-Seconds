@@ -41,6 +41,10 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+
+  .count {
+    font-weight: bold;
+  }
 </style>
 
 <div class="goals">
@@ -49,7 +53,10 @@
       class="goal"
       class:complete={task.completed}
       on:click={() => openTask(task)}>
-      {task.title}
+      {#if task.getSubgoalCount()}
+        <span class="count">({task.getSubgoalCount()})</span>
+      {/if}
+      <span>{task.title}</span>
     </div>
   {/each}
 </div>

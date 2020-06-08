@@ -27,7 +27,6 @@
     text-align: center;
     border: none;
     font-size: 60px;
-    letter-spacing: 0.2em;
     color: rgba(0, 0, 0, 0.7);
     padding-left: 8px;
     padding-right: 8px;

@@ -63,6 +63,17 @@ class Goal {
   deletePending() {
     this.subgoals = this.subgoals.filter((g) => !g.isPending)
   }
+
+  getSubgoalCount() {
+    if (!this.subgoals.length) {
+      return 0
+    }
+
+    return this.subgoals.reduce(
+      (accum, g) => accum + g.getSubgoalCount(),
+      this.subgoals.length,
+    )
+  }
 }
 
 export default Goal
